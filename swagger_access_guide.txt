@@ -1,0 +1,63 @@
+╔══════════════════════════════════════════════════════════════════╗
+║         SWAGGER UI NOW ENABLED - FAST API TESTING!              ║
+╚══════════════════════════════════════════════════════════════════╝
+
+✅ Swagger UI has been successfully added to all backend services!
+
+Your EC2 Public IP: 13.50.252.129
+
+═══════════════════════════════════════════════════════════════════
+
+📚 SWAGGER UI URLs (Interactive API Testing):
+
+1. TRAFFIC SERVICE:
+   http://13.50.252.129:8082/swagger-ui.html
+   
+2. CCTV SERVICE:
+   http://13.50.252.129:8083/swagger-ui.html
+   
+3. POWER SERVICE:
+   http://13.50.252.129:8084/swagger-ui.html
+   
+4. ALERT SERVICE:
+   http://13.50.252.129:8085/swagger-ui.html
+
+═══════════════════════════════════════════════════════════════════
+
+📖 OPENAPI JSON DOCUMENTATION:
+
+  http://13.50.252.129:8082/api-docs
+  http://13.50.252.129:8083/api-docs
+  http://13.50.252.129:8084/api-docs
+  http://13.50.252.129:8085/api-docs
+
+═══════════════════════════════════════════════════════════════════
+
+🚀 HOW TO USE SWAGGER UI:
+
+1. Open any Swagger URL above in your browser
+2. You'll see an interactive API documentation page
+3. Click on any endpoint to expand it
+4. Click "Try it out" button
+5. Fill in required parameters
+6. Click "Execute" to test the API
+7. See the response immediately!
+
+═══════════════════════════════════════════════════════════════════
+
+💡 FEATURES:
+
+✓ Test ALL API endpoints directly from browser
+✓ See request/response schemas
+✓ Try different parameters easily
+✓ View response codes and data
+✓ No need for Postman or curl commands!
+✓ Auto-generated from your controller annotations
+
+═══════════════════════════════════════════════════════════════════
+
+⚠️  REMEMBER:
+Make sure your EC2 Security Group allows inbound traffic on ports 8082-8085!
+
+═══════════════════════════════════════════════════════════════════
+

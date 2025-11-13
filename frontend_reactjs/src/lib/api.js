@@ -1,5 +1,5 @@
 // API base URL - Gateway service
-const API_BASE_URL = 'http://gateway-service:8081/api';
+const API_BASE_URL = 'http://13.204.76.185:8081/api';
 
 // Get auth token from localStorage
 function getAuthToken() {

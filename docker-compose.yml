@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   postgres:
     image: postgres:15-alpine
@@ -169,4 +171,5 @@ networks:
 
 volumes:
   postgres_data:
+
 

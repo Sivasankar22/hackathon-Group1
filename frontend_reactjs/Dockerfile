@@ -1,30 +1,25 @@
-# Stage 1: Build the React application
 FROM node:20 AS build
+
+# Create app directory and set ownership to non-root user "node"
+RUN mkdir -p /app && chown -R node:node /app
 
 WORKDIR /app
 
-# Copy package files
+# Run dependency install as root, copying the package files first
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install --legacy-peer-deps
 
-# Copy all files
-COPY . .
+# Switch to non-root user for copying and building app
+USER node
+COPY --chown=node:node . .
 
-# Use node directly to run vite (bypasses permission issues)
+# Run the build using node as non-root user
 RUN node node_modules/vite/bin/vite.js build
 
-# Stage 2: Serve with Nginx
+# Stage 2 remains same (nginx serving, no permission issue as nginx runs as root or proper user)
 FROM nginx:alpine
-
-# Copy built files from build stage
 COPY --from=build /app/dist /usr/share/nginx/html
-
-# Copy nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Expose port
 EXPOSE 80
-
 CMD ["nginx", "-g", "daemon off;"]
+

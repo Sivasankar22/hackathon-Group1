@@ -6,6 +6,13 @@ metadata:
 ---
 
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: ingress-nginx
+
+---
+
+apiVersion: v1
 kind: Secret
 metadata:
   name: postgres-secret
@@ -460,7 +467,6 @@ metadata:
 spec:
   replicas: 1
   selector:
-
     matchLabels:
       app: frontend
   template:
@@ -487,5 +493,4 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-
 

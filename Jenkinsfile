@@ -1,23 +1,14 @@
-71
 pipeline {
     agent any
-    
-    tools {
-        maven 'Maven-3.9'
-    }
-    
-    environment {
-        DOCKER_COMPOSE_VERSION = '1.29.2'
-    }
-    
+
     stages {
         stage('Checkout') {
             steps {
-                echo 'Checking out code from GitHub...'
+                echo 'Checking out code...'
                 checkout scm
             }
         }
-        
+
         stage('Build Backend') {
             steps {
                 echo 'Building Spring Boot microservices with Maven...'
@@ -26,23 +17,21 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Docker Build') {
             steps {
                 echo 'Building Docker images...'
                 sh 'docker-compose build --no-cache'
             }
         }
-        
-    stage('Stop Old Containers') {
-        steps {
-            echo 'Removing old service containers...'
-            sh 'docker ps -a --format "{{.Names}}" | grep -E "(uocc-postgres|alert-service|auth-service|gateway-service|cctv-service|traffic-service|power-service|frontend)" | xargs -r docker rm -f || true'
-            sh 'docker-compose down || true'
+
+        stage('Stop Old Containers') {
+            steps {
+                echo 'Removing old service containers...'
+                sh 'docker ps -a --format "{{.Names}}" | grep -E "(uocc-postgres|alert-service|auth-service|gateway-service|cctv-service|traffic-service|power-service|python-service|frontend)" | xargs -r docker rm -f || true'
+                sh 'docker-compose down || true'
+            }
         }
-    }
-       
-        
 
         stage('Deploy') {
             steps {
@@ -50,6 +39,7 @@ pipeline {
                 sh 'docker-compose up -d'
             }
         }
+
         stage('Verify Deployment') {
             steps {
                 echo 'Verifying deployment...'
@@ -59,7 +49,7 @@ pipeline {
             }
         }
     }
-    
+
     post {
         success {
             echo 'Pipeline completed successfully!'

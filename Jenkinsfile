@@ -36,6 +36,7 @@ pipeline {
         stage('Stop Old Containers') {
             steps {
                 echo 'Stopping old containers...'
+                sh 'docker rm -f uocc-postgres || true'
                 sh 'docker-compose down || true'
             }
         }

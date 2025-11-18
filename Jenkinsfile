@@ -34,7 +34,6 @@ pipeline {
             }
         }
         
-        stage('Stop Old Containers') {
     stage('Stop Old Containers') {
         steps {
             echo 'Removing old service containers...'

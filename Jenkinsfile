@@ -41,8 +41,7 @@ pipeline {
             sh 'docker-compose down || true'
         }
     }
-            }
-        }
+            
         
         stage('Verify Deployment') {
             steps {

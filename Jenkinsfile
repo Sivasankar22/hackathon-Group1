@@ -1,3 +1,4 @@
+71
 pipeline {
     agent any
     
@@ -34,15 +35,13 @@ pipeline {
         }
         
         stage('Stop Old Containers') {
-                echo 'Removing old service containers...'                sh 'docker ps -a --format "{{.Names}}" | grep -E "(uocc-postgres|alert-service|auth-service|gateway-service|cctv-service|traffic-service|power-service|frontend)" | xargs -r docker rm -f || true'                sh 'docker rm -f uocc-postgres || true'
-                sh 'docker-compose down || true'
-            }
+    stage('Stop Old Containers') {
+        steps {
+            echo 'Removing old service containers...'
+            sh 'docker ps -a --format "{{.Names}}" | grep -E "(uocc-postgres|alert-service|auth-service|gateway-service|cctv-service|traffic-service|power-service|frontend)" | xargs -r docker rm -f || true'
+            sh 'docker-compose down || true'
         }
-        
-        stage('Deploy') {
-            steps {
-                echo 'Deploying with Docker Compose...'
-                sh 'docker-compose up -d'
+    }
             }
         }
         

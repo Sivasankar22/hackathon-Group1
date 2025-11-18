@@ -41,8 +41,15 @@ pipeline {
             sh 'docker-compose down || true'
         }
     }
-            
+       
         
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying with Docker Compose...'
+                sh 'docker-compose up -d'
+            }
+        }
         stage('Verify Deployment') {
             steps {
                 echo 'Verifying deployment...'

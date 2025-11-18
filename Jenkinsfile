@@ -34,9 +34,7 @@ pipeline {
         }
         
         stage('Stop Old Containers') {
-            steps {
-                echo 'Stopping old containers...'
-                sh 'docker rm -f uocc-postgres || true'
+                echo 'Removing old service containers...'                sh 'docker ps -a --format "{{.Names}}" | grep -E "(uocc-postgres|alert-service|auth-service|gateway-service|cctv-service|traffic-service|power-service|frontend)" | xargs -r docker rm -f || true'                sh 'docker rm -f uocc-postgres || true'
                 sh 'docker-compose down || true'
             }
         }
